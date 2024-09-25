@@ -96,13 +96,13 @@
     "Parameters": [
       {
         "Name": "tarea",
-        "Type": "DoubleV.Modelos.Tarea",
+        "Type": "DoubleV.DTOs.TareaDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "DoubleV.Modelos.Tarea",
+        "Type": "DoubleV.DTOs.ApiResponse",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -140,33 +140,7 @@
   },
   {
     "ContainingType": "DoubleV.Controllers.UsuariosController",
-    "Method": "CreateUsuario",
-    "RelativePath": "api/Usuarios",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "usuario",
-        "Type": "DoubleV.Modelos.Usuario",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "DoubleV.Modelos.Usuario",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "DoubleV.Controllers.UsuariosController",
-    "Method": "GetUsuario",
+    "Method": "ObtenerUsuarioPorIdAsync",
     "RelativePath": "api/Usuarios/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -180,7 +154,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "DoubleV.Modelos.Usuario",
+        "Type": "DoubleV.DTOs.UsuarioResponse",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -247,7 +221,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "DoubleV.DTOs.UsuariosResponse",
+        "Type": "DoubleV.DTOs.UsuariosConRolResponse",
         "MediaTypes": [
           "text/plain",
           "application/json",

@@ -1,4 +1,5 @@
-﻿using DoubleV.Interfaces;
+﻿using DoubleV.DTOs;
+using DoubleV.Interfaces;
 using DoubleV.Modelos;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,30 +17,31 @@ namespace DoubleV.Servicios
             _context = context;
         }
 
-        public async Task<bool> CrearTareaAsync(Tarea tarea)
+        public async Task<int> CrearTareaAsync(Tarea tarea)
         {
             try
             {
                 _context.Tareas.Add(tarea);
                 await _context.SaveChangesAsync();
-                // Si se guarda correctamente, devuelve true
-                return true; 
+                // Devuelve el ID de la tarea creada
+                return tarea.TareaId;
             }
-            catch (DbUpdateException dbEx) 
-            {                
-                Console.WriteLine("Error de base de datos: " + dbEx.Message); 
-                if (dbEx.InnerException != null) 
+            catch (DbUpdateException dbEx)
+            {
+                Console.WriteLine("Error de base de datos: " + dbEx.Message);
+                if (dbEx.InnerException != null)
                 {
                     Console.WriteLine("Detalle: " + dbEx.InnerException.Message);
                 }
-                return false;
+                return -1; // Devuelve -1 en caso de error
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error general: " + ex.Message);
-                return false; 
-            }           
+                return -1; // Devuelve -1 en caso de error
+            }
         }
+
 
         public async Task<List<Tarea>> GetAllTareasAsync()
         {

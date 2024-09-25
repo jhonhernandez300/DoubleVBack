@@ -17,6 +17,23 @@ namespace DoubleV.Servicios
             _context = context;
         }
 
+        public async Task<Usuario?> ObtenerUsuarioPorIdAsync(int id)
+        {
+            try
+            {
+                var usuario = await _context.Usuarios
+                    .Where(u => u.UsuarioId == id)
+                    .FirstOrDefaultAsync();
+
+                return usuario;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener el usuario: " + ex.Message);
+                return null;
+            }
+        }
+
         public async Task<List<UsuarioConRol>> ObtenerTodosLosUsuariosAsync()
         {
             try
@@ -53,7 +70,7 @@ namespace DoubleV.Servicios
             }
         }
 
-        public async Task<Usuario> GetUsuarioByIdAsync(int id)
+        public async Task<Usuario> ObtenerUsuarioConRolYTareasUsandoElIdAsync(int id)
         {
             return await _context.Usuarios.Include(u => u.Rol).Include(u => u.Tareas)
                 .FirstOrDefaultAsync(u => u.UsuarioId == id);

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace DoubleV.Modelos
 {
@@ -10,6 +11,7 @@ namespace DoubleV.Modelos
         public int RolId { get; set; }
         public required string Nombre { get; set; }
 
+        [JsonIgnore]
         public ICollection<Usuario>? Usuarios { get; set; }
     }
 }

@@ -34,9 +34,9 @@ namespace DoubleVPruebas.Controladores.UsuariosControllerPruebas
             
             var result = await _usuariosController.ObtenerTodosLosUsuariosAsync();
             
-            var actionResult = Assert.IsType<ActionResult<UsuariosResponse>>(result);
+            var actionResult = Assert.IsType<ActionResult<UsuariosConRolResponse>>(result);
             var okResult = Assert.IsType<OkObjectResult>(actionResult.Result);
-            var response = Assert.IsType<UsuariosResponse>(okResult.Value);
+            var response = Assert.IsType<UsuariosConRolResponse>(okResult.Value);
 
             Assert.Equal("No se encontraron usuarios", response.Message);
             Assert.NotNull(response.Usuarios);

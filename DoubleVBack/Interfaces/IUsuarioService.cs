@@ -7,8 +7,9 @@ namespace DoubleV.Interfaces
 {
     public interface IUsuarioService
     {
+        Task<Usuario?> ObtenerUsuarioPorIdAsync(int id);
         Task<List<UsuarioConRol>> ObtenerTodosLosUsuariosAsync();
-        Task<Usuario> GetUsuarioByIdAsync(int id);
+        Task<Usuario> ObtenerUsuarioConRolYTareasUsandoElIdAsync(int id);
         Task<Usuario> CreateUsuarioAsync(Usuario usuario);
         Task<Usuario> UpdateUsuarioAsync(Usuario usuario);
         Task<bool> DeleteUsuarioAsync(int id);

@@ -1,5 +1,6 @@
 using DoubleV;
 using DoubleV.Interfaces;
+using DoubleV.Mapping;
 using DoubleV.Modelos;
 using DoubleV.Servicios;
 //using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -9,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Text;
 //using DoubleV.Middlewares;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,6 +70,10 @@ builder.Services.AddSwaggerGen(c =>
 //    });
 
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddAutoMapper(
+    typeof(MappingTarea)
+);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
