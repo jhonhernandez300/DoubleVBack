@@ -37,6 +37,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ITareaService, TareaService>();
+builder.Services.AddScoped<IRolService, RolService>();
 
 builder.Services.AddSwaggerGen(c =>
 {

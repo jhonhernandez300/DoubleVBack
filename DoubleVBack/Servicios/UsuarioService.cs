@@ -44,12 +44,12 @@ namespace DoubleV.Servicios
                 {
                     Console.WriteLine("Detalle: " + dbEx.InnerException.Message);
                 }
-                return new List<UsuarioConRol>(); // Cambia el tipo de retorno
+                return new List<UsuarioConRol>(); 
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error general: " + ex.Message);
-                return new List<UsuarioConRol>(); // Cambia el tipo de retorno
+                return new List<UsuarioConRol>(); 
             }
         }
 
