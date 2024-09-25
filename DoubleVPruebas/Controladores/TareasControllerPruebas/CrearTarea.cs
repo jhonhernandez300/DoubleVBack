@@ -33,7 +33,8 @@ namespace DoubleVPruebas.Controladores.TareasControllerPruebas
             {
                 TareaId = 1,
                 Descripcion = "Nueva tarea de prueba",
-                UsuarioId = 123
+                UsuarioId = 123,
+                Estado = "Pendiente"
             };
 
             _mockTareaService.Setup(s => s.CrearTareaAsync(It.IsAny<Tarea>()))

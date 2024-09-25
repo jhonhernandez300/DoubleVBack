@@ -32,4 +32,8 @@
     <ContainerPort Include="443" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

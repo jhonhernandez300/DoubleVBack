@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DoubleVPruebas")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2fa862bceee181a36858cb402cde07ad7b24852f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+715b02b6ad4fe71b72f75ab3e6d771eba04a1ac7")]
 [assembly: System.Reflection.AssemblyProductAttribute("DoubleVPruebas")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DoubleVPruebas")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

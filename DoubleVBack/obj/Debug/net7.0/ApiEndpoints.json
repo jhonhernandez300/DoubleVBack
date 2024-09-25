@@ -120,26 +120,6 @@
   },
   {
     "ContainingType": "DoubleV.Controllers.UsuariosController",
-    "Method": "GetUsuarios",
-    "RelativePath": "api/Usuarios",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[DoubleV.Modelos.Usuario, DoubleV, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "DoubleV.Controllers.UsuariosController",
     "Method": "CreateUsuario",
     "RelativePath": "api/Usuarios",
     "HttpMethod": "POST",
@@ -236,6 +216,26 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DoubleV.Controllers.UsuariosController",
+    "Method": "ObtenerTodosLosUsuariosAsync",
+    "RelativePath": "api/Usuarios/ObtenerTodosLosUsuariosAsync",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "DoubleV.DTOs.UsuariosResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "DoubleV.Controllers.WeatherForecastController",

@@ -30,7 +30,7 @@ namespace DoubleVPruebas.Controladores.UsuariosControllerPruebas
         public async Task ObtenerTodosLosUsuariosAsync_NoUsuarios_ReturnsOkWithMessage()
         {            
             _mockUsuarioService.Setup(s => s.ObtenerTodosLosUsuariosAsync())
-                .ReturnsAsync(new List<Usuario>()); 
+                .ReturnsAsync(new List<UsuarioConRol>()); 
             
             var result = await _usuariosController.ObtenerTodosLosUsuariosAsync();
             

@@ -10,6 +10,7 @@ namespace DoubleV.Modelos
         public int TareaId { get; set; }
         public required string Descripcion { get; set; }
         public required int UsuarioId { get; set; }
+        public required string Estado { get; set; }
 
         public Usuario? Usuario { get; set; }
     }

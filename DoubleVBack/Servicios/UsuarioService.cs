@@ -1,4 +1,5 @@
-﻿using DoubleV.Interfaces;
+﻿using DoubleV.DTOs;
+using DoubleV.Interfaces;
 using DoubleV.Modelos;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,11 +17,25 @@ namespace DoubleV.Servicios
             _context = context;
         }
 
-        public async Task<List<Usuario>> ObtenerTodosLosUsuariosAsync()
+        public async Task<List<UsuarioConRol>> ObtenerTodosLosUsuariosAsync()
         {
             try
             {
-                return await _context.Usuarios.Include(u => u.Rol).Include(u => u.Tareas).ToListAsync();
+                // Obtener los usuarios con su rol y mapear a UsuarioConRol
+                var usuarios = await _context.Usuarios
+                    .Include(u => u.Rol) // Incluir la relación con Rol
+                    .Select(u => new UsuarioConRol
+                    {
+                        UsuarioId = u.UsuarioId,
+                        Nombre = u.Nombre,
+                        Email = u.Email,
+                        Password = u.Password,
+                        RolId = u.RolId,
+                        RolNombre = u.Rol != null ? u.Rol.Nombre : string.Empty // Manejo del caso nulo
+                    })
+                    .ToListAsync();
+
+                return usuarios;
             }
             catch (DbUpdateException dbEx)
             {
@@ -28,16 +43,15 @@ namespace DoubleV.Servicios
                 if (dbEx.InnerException != null)
                 {
                     Console.WriteLine("Detalle: " + dbEx.InnerException.Message);
-                }                
-                return new List<Usuario>();
+                }
+                return new List<UsuarioConRol>(); // Cambia el tipo de retorno
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error general: " + ex.Message);
-                return new List<Usuario>();
+                return new List<UsuarioConRol>(); // Cambia el tipo de retorno
             }
         }
-
 
         public async Task<Usuario> GetUsuarioByIdAsync(int id)
         {

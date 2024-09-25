@@ -27,7 +27,7 @@ namespace DoubleV.Controllers
 
                 if (usuarios == null || !usuarios.Any())
                 {
-                    return Ok(new UsuariosResponse { Message = "No se encontraron usuarios", Usuarios = new List<Usuario>() });
+                    return Ok(new UsuariosResponse { Message = "No se encontraron usuarios", Usuarios = new List<UsuarioConRol>() });
                 }
 
                 return Ok(new UsuariosResponse { Usuarios = usuarios });

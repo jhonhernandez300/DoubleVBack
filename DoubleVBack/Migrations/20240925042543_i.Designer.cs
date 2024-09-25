@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoubleV.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240924210011_i")]
+    [Migration("20240925042543_i")]
     partial class i
     {
         /// <inheritdoc />
@@ -51,6 +51,11 @@ namespace DoubleV.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TareaId"));
 
                     b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UsuarioId")
