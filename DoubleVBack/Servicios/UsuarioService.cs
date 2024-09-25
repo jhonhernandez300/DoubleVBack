@@ -16,10 +16,28 @@ namespace DoubleV.Servicios
             _context = context;
         }
 
-        public async Task<List<Usuario>> GetAllUsuariosAsync()
+        public async Task<List<Usuario>> ObtenerTodosLosUsuariosAsync()
         {
-            return await _context.Usuarios.Include(u => u.Rol).Include(u => u.Tareas).ToListAsync();
+            try
+            {
+                return await _context.Usuarios.Include(u => u.Rol).Include(u => u.Tareas).ToListAsync();
+            }
+            catch (DbUpdateException dbEx)
+            {
+                Console.WriteLine("Error de base de datos: " + dbEx.Message);
+                if (dbEx.InnerException != null)
+                {
+                    Console.WriteLine("Detalle: " + dbEx.InnerException.Message);
+                }                
+                return new List<Usuario>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error general: " + ex.Message);
+                return new List<Usuario>();
+            }
         }
+
 
         public async Task<Usuario> GetUsuarioByIdAsync(int id)
         {

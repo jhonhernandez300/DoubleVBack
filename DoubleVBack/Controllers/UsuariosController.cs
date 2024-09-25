@@ -1,4 +1,5 @@
-﻿using DoubleV.Interfaces;
+﻿using DoubleV.DTOs;
+using DoubleV.Interfaces;
 using DoubleV.Modelos;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -17,11 +18,28 @@ namespace DoubleV.Controllers
             _usuarioService = usuarioService;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<List<Usuario>>> GetUsuarios()
+        [HttpGet("ObtenerTodosLosUsuariosAsync")]
+        public async Task<ActionResult<UsuariosResponse>> ObtenerTodosLosUsuariosAsync()
         {
-            return await _usuarioService.GetAllUsuariosAsync();
+            try
+            {
+                var usuarios = await _usuarioService.ObtenerTodosLosUsuariosAsync();
+
+                if (usuarios == null || !usuarios.Any())
+                {
+                    return Ok(new UsuariosResponse { Message = "No se encontraron usuarios", Usuarios = new List<Usuario>() });
+                }
+
+                return Ok(new UsuariosResponse { Usuarios = usuarios });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en GetUsuarios: " + ex.Message);
+                return StatusCode(500, new UsuariosResponse { Message = "Error interno del servidor" });
+            }
         }
+
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Usuario>> GetUsuario(int id)

@@ -8,7 +8,7 @@ namespace DoubleV.Interfaces
     {
         Task<List<Tarea>> GetAllTareasAsync();
         Task<Tarea> GetTareaByIdAsync(int id);
-        Task<Tarea> CreateTareaAsync(Tarea tarea);
+        Task<bool> CrearTareaAsync(Tarea tarea);
         Task<Tarea> UpdateTareaAsync(Tarea tarea);
         Task<bool> DeleteTareaAsync(int id);
     }

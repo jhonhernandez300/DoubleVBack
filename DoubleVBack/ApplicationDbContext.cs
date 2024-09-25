@@ -19,6 +19,27 @@ namespace DoubleV
             modelBuilder.Entity<Rol>().ToTable("Roles");
             modelBuilder.Entity<Usuario>().ToTable("Usuarios");
             modelBuilder.Entity<Tarea>().ToTable("Tareas");
+
+            modelBuilder.Entity<Usuario>()
+                .HasKey(df => df.UsuarioId);
+
+            modelBuilder.Entity<Rol>()
+                .HasKey(df => df.RolId);
+
+            modelBuilder.Entity<Tarea>()
+                .HasKey(df => df.TareaId);
+
+            //Las relaciones
+            modelBuilder.Entity<Usuario>()
+                .HasOne(df => df.Rol)
+                .WithMany(f => f.Usuarios);
+
+            modelBuilder.Entity<Tarea>()
+                .HasOne(df => df.Usuario)
+                .WithMany(f => f.Tareas);
+
+            base.OnModelCreating(modelBuilder);
+
         }
     }
 }
