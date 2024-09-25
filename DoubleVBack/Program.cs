@@ -71,9 +71,8 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddAutoMapper(
-    typeof(MappingTarea)
-);
+builder.Services.AddAutoMapper(typeof(MappingTarea));
+builder.Services.AddAutoMapper(typeof(MappingUsuario));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -9,9 +9,8 @@ namespace DoubleV.Interfaces
     {
         Task<Usuario?> ObtenerUsuarioPorIdAsync(int id);
         Task<List<UsuarioConRol>> ObtenerTodosLosUsuariosAsync();
-        Task<Usuario> ObtenerUsuarioConRolYTareasUsandoElIdAsync(int id);
-        Task<Usuario> CreateUsuarioAsync(Usuario usuario);
-        Task<Usuario> UpdateUsuarioAsync(Usuario usuario);
+        Task<Usuario> ObtenerUsuarioConRolYTareasUsandoElIdAsync(int id);        
+        Task<int> CrearUsuarioAsync(Usuario usuario);
         Task<bool> DeleteUsuarioAsync(int id);
     }
 }

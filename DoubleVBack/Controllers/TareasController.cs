@@ -24,28 +24,6 @@ namespace DoubleV.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("ObtenerTareaPorId/{id}")]
-        public async Task<ActionResult<Tarea>> ObtenerTareaPorId(int id)
-        {
-            if (id <= 0)
-            {
-                return BadRequest(new ApiResponse { Message = "id inválido para la tarea", Data = null });
-            }
-            try
-            {
-                var tareaEncontrada = await _tareaService.GetTareaByIdAsync(id);
-                if (tareaEncontrada == null)
-                {
-                    return NotFound(new ApiResponse { Message = $"Tarea con el id {id} no fue encontrada.", Data = null });
-                }
-                return Ok(new ApiResponse { Message = "Tarea encontrada.", Data = tareaEncontrada });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new ApiResponse { Message = "Error al buscar tarea por id.", Error = ex.Message });
-            }
-        }
-
         [HttpPost("CrearTarea")]
         public async Task<ActionResult<ApiResponse>> CrearTarea([FromBody] TareaDTO tarea)
         {
@@ -70,6 +48,28 @@ namespace DoubleV.Controllers
                 return StatusCode(500, new ApiResponse { Message = "Error al crear una tarea.", Error = ex.Message });
             }
         }
+
+        [HttpGet("ObtenerTareaPorId/{id}")]
+        public async Task<ActionResult<Tarea>> ObtenerTareaPorId(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest(new ApiResponse { Message = "id inválido para la tarea", Data = null });
+            }
+            try
+            {
+                var tareaEncontrada = await _tareaService.GetTareaByIdAsync(id);
+                if (tareaEncontrada == null)
+                {
+                    return NotFound(new ApiResponse { Message = $"Tarea con el id {id} no fue encontrada.", Data = null });
+                }
+                return Ok(new ApiResponse { Message = "Tarea encontrada.", Data = tareaEncontrada });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ApiResponse { Message = "Error al buscar tarea por id.", Error = ex.Message });
+            }
+        }    
 
         [HttpGet]
         public async Task<ActionResult<List<Tarea>>> GetTareas()

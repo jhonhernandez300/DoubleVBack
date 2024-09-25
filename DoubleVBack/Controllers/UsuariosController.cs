@@ -4,6 +4,7 @@ using DoubleV.Modelos;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace DoubleV.Controllers
 {
@@ -12,13 +13,47 @@ namespace DoubleV.Controllers
     public class UsuariosController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly IMapper _mapper;
 
-        public UsuariosController(IUsuarioService usuarioService)
+        public UsuariosController(IUsuarioService usuarioService, IMapper mapper)
         {
             _usuarioService = usuarioService;
+            _mapper = mapper;
         }
 
-        [HttpGet("{id}")]
+        [HttpPost("CrearUsuario")] 
+        public async Task<ActionResult<ApiResponse>> CrearUsuario([FromBody] UsuarioSinIdDTO usuarioSinIdDto) 
+        {
+            if (usuarioSinIdDto == null) 
+            {
+                return BadRequest(new ApiResponse { Message = "Los datos del usuario son requeridos.", Data = null }); 
+            }
+
+            try
+            {
+                var usuarioMapeado = _mapper.Map<Usuario>(usuarioSinIdDto); 
+
+                int usuarioId = await _usuarioService.CrearUsuarioAsync(usuarioMapeado);
+
+                // Si se creó correctamente, el ID será mayor que 0
+                if (usuarioId > 0) 
+                {
+                    return Ok(new ApiResponse
+                    {
+                        Message = "Usuario creado exitosamente.",
+                        Data = usuarioId
+                    });
+
+                }
+                return BadRequest(new ApiResponse { Message = "Fallo al crear el usuario", Data = null }); 
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ApiResponse { Message = "Error al crear un usuario.", Error = ex.Message }); 
+            }
+        }
+
+        [HttpGet("ObtenerUsuarioPorIdAsync/{id}")]
         public async Task<ActionResult<UsuarioResponse>> ObtenerUsuarioPorIdAsync(int id)
         {
             try
@@ -96,13 +131,13 @@ namespace DoubleV.Controllers
         //    return CreatedAtAction(nameof(GetUsuario), new { id = createdUsuario.UsuarioId }, createdUsuario);
         //}
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult<Usuario>> UpdateUsuario(int id, Usuario usuario)
-        {
-            if (id != usuario.UsuarioId) return BadRequest();
-            await _usuarioService.UpdateUsuarioAsync(usuario);
-            return NoContent();
-        }
+        //[HttpPut("{id}")]
+        //public async Task<ActionResult<Usuario>> UpdateUsuario(int id, Usuario usuario)
+        //{
+        //    if (id != usuario.UsuarioId) return BadRequest();
+        //    await _usuarioService.UpdateUsuarioAsync(usuario);
+        //    return NoContent();
+        //}
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteUsuario(int id)
