@@ -1,6 +1,6 @@
 ﻿namespace DoubleV.DTOs
 {
-    public class TareaDTO
+    public class TareaSinIdDTO
     {        
         public required string Descripcion { get; set; }
         public required int UsuarioId { get; set; }

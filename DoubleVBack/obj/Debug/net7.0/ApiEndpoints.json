@@ -21,26 +21,6 @@
   },
   {
     "ContainingType": "DoubleV.Controllers.TareasController",
-    "Method": "GetTareas",
-    "RelativePath": "api/Tareas",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[DoubleV.Modelos.Tarea, DoubleV, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "DoubleV.Controllers.TareasController",
     "Method": "UpdateTarea",
     "RelativePath": "api/Tareas/{id}",
     "HttpMethod": "PUT",
@@ -96,7 +76,7 @@
     "Parameters": [
       {
         "Name": "tarea",
-        "Type": "DoubleV.DTOs.TareaDTO",
+        "Type": "DoubleV.DTOs.TareaSinIdDTO",
         "IsRequired": true
       }
     ],
@@ -129,6 +109,26 @@
     "ReturnTypes": [
       {
         "Type": "DoubleV.Modelos.Tarea",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DoubleV.Controllers.TareasController",
+    "Method": "ObtenerTareasConUsuarios",
+    "RelativePath": "api/Tareas/ObtenerTareasConUsuarios",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "DoubleV.DTOs.ApiResponse",
         "MediaTypes": [
           "text/plain",
           "application/json",

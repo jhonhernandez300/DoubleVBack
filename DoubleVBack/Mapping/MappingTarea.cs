@@ -9,10 +9,10 @@ namespace DoubleV.Mapping
     {
         public MappingTarea()
         {
-            CreateMap<TareaDTO, Tarea>()
+            CreateMap<TareaSinIdDTO, Tarea>()
                 .ForMember(dest => dest.Usuario, opt => opt.Ignore());
 
-            CreateMap<Tarea, TareaDTO>();
+            CreateMap<Tarea, TareaSinIdDTO>();
         }        
     }
 }

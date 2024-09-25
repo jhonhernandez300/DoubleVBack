@@ -20,5 +20,10 @@ namespace DoubleV.Modelos
 
         [JsonIgnore]
         public ICollection<Tarea>? Tareas { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Nombre} ({UsuarioId})"; 
+        }
     }
 }

@@ -24,8 +24,32 @@ namespace DoubleV.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet("ObtenerTareasConUsuarios")]
+        public async Task<ActionResult<ApiResponse>> ObtenerTareasConUsuarios()
+        {
+            try
+            {
+                var tareasConUsuarios = await _tareaService.ObtenerTareasConUsuariosAsync();
+                var tareasConUsuariosDTO = _mapper.Map<IEnumerable<TareaConUsuarioDTO>>(tareasConUsuarios);
+
+                return Ok(new ApiResponse
+                {
+                    Message = "Tareas obtenidas exitosamente.",
+                    Data = tareasConUsuariosDTO
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ApiResponse
+                {
+                    Message = "Error al obtener tareas.",
+                    Error = ex.Message
+                });
+            }
+        }
+
         [HttpPost("CrearTarea")]
-        public async Task<ActionResult<ApiResponse>> CrearTarea([FromBody] TareaDTO tarea)
+        public async Task<ActionResult<ApiResponse>> CrearTarea([FromBody] TareaSinIdDTO tarea)
         {
             if (tarea == null)
             {
@@ -69,13 +93,7 @@ namespace DoubleV.Controllers
             {
                 return StatusCode(500, new ApiResponse { Message = "Error al buscar tarea por id.", Error = ex.Message });
             }
-        }    
-
-        [HttpGet]
-        public async Task<ActionResult<List<Tarea>>> GetTareas()
-        {
-            return await _tareaService.GetAllTareasAsync();
-        }          
+        }                   
 
         [HttpPut("{id}")]
         public async Task<ActionResult<Tarea>> UpdateTarea(int id, Tarea tarea)

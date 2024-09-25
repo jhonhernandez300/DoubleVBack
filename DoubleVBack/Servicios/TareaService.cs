@@ -17,6 +17,46 @@ namespace DoubleV.Servicios
             _context = context;
         }
 
+        public async Task<IEnumerable<TareaConUsuarioDTO>> ObtenerTareasConUsuariosAsync()
+        {
+            try
+            {
+                Console.WriteLine("Iniciando la obtención de tareas con usuarios...");
+                // Obtiene todas las tareas con la relación del usuario cargada
+                var tareas = await _context.Tareas
+                    .Include(t => t.Usuario)
+                    .ToListAsync();
+
+                // Mapea las tareas a TareaConUsuarioDTO
+                var tareasConUsuarioDTO = tareas.Select(t => new TareaConUsuarioDTO
+                {
+                    TareaId = t.TareaId,
+                    Descripcion = t.Descripcion,
+                    Estado = t.Estado,
+                    // Manejo de posible null
+                    UsuarioId = t.Usuario?.UsuarioId ?? 0, 
+                    UsuarioNombre = t.Usuario?.Nombre ?? "Usuario no disponible" 
+                }).ToList();
+
+                return tareasConUsuarioDTO;                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Se produjo un error durante la obtención de tareas.");
+                Console.WriteLine($"Mensaje de error: {ex.Message}");
+
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"Detalle de error interno: {ex.InnerException.Message}");
+                }
+
+                Console.WriteLine("Asegúrate de que la base de datos está accesible y la conexión es correcta.");
+                return new List<TareaConUsuarioDTO>();
+            }
+        }
+
+
+
         public async Task<int> CrearTareaAsync(Tarea tarea)
         {
             try
