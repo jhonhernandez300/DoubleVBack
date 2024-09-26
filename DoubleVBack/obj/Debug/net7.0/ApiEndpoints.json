@@ -52,8 +52,8 @@
   },
   {
     "ContainingType": "DoubleV.Controllers.TareasController",
-    "Method": "DeleteTarea",
-    "RelativePath": "api/Tareas/{id}",
+    "Method": "BorrarTarea",
+    "RelativePath": "api/Tareas/BorrarTarea/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -64,7 +64,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "DoubleV.DTOs.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "DoubleV.Controllers.TareasController",

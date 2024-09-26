@@ -12,6 +12,6 @@ namespace DoubleV.Interfaces
         Task<Tarea> GetTareaByIdAsync(int id);
         Task<int> CrearTareaAsync(Tarea tarea);
         Task<Tarea> UpdateTareaAsync(Tarea tarea);
-        Task<bool> DeleteTareaAsync(int id);
+        Task<bool> BorrarTareaAsync(int tareaId);
     }
 }

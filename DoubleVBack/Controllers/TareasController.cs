@@ -24,6 +24,33 @@ namespace DoubleV.Controllers
             _mapper = mapper;
         }
 
+        [HttpDelete("BorrarTarea/{id}")]
+        public async Task<ActionResult<ApiResponse>> BorrarTarea(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest(new ApiResponse { Message = "El ID de la tarea es requerido.", Data = null });
+            }
+            try
+            {
+                var resultado = await _tareaService.BorrarTareaAsync(id);
+
+                if (resultado)
+                {
+                    return Ok(new ApiResponse
+                    {
+                        Message = "Tarea eliminada exitosamente.",
+                        Data = null
+                    });
+                }
+                return NotFound(new ApiResponse { Message = "Tarea no encontrada.", Data = null });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ApiResponse { Message = "Error al borrar la tarea.", Error = ex.Message });
+            }
+        }
+
         [HttpGet("ObtenerTareasConUsuarios")]
         public async Task<ActionResult<ApiResponse>> ObtenerTareasConUsuarios()
         {
@@ -102,13 +129,6 @@ namespace DoubleV.Controllers
             await _tareaService.UpdateTareaAsync(tarea);
             return NoContent();
         }
-
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteTarea(int id)
-        {
-            var result = await _tareaService.DeleteTareaAsync(id);
-            if (!result) return NotFound();
-            return NoContent();
-        }
+        
     }
 }
