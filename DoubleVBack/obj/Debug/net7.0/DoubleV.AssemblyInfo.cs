@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DoubleV")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+288995e891ec5da0acd501367c84044ec6499365")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+22c9179cc06ad606e27c1baa327879560160d963")]
 [assembly: System.Reflection.AssemblyProductAttribute("DoubleV")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DoubleV")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

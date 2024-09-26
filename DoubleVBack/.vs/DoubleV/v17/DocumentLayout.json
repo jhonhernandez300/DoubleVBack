@@ -3,20 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\jhon\\OneDrive\\Documentos\\Pruebas empresas\\DoubleV\\DoubleVBack\\DoubleVBack\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|c:\\users\\jhon\\onedrive\\documentos\\pruebas empresas\\doublev\\doublevback\\doublevback\\servicios\\tareaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|solutionrelative:servicios\\tareaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|c:\\users\\jhon\\onedrive\\documentos\\pruebas empresas\\doublev\\doublevback\\doublevback\\mapping\\mappingtarea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|solutionrelative:mapping\\mappingtarea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|c:\\users\\jhon\\onedrive\\documentos\\pruebas empresas\\doublev\\doublevback\\doublevback\\servicios\\tareaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|solutionrelative:servicios\\tareaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|c:\\users\\jhon\\onedrive\\documentos\\pruebas empresas\\doublev\\doublevback\\doublevback\\dtos\\tareaconusuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|solutionrelative:dtos\\tareaconusuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|c:\\users\\jhon\\onedrive\\documentos\\pruebas empresas\\doublev\\doublevback\\doublevback\\controllers\\tareascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|solutionrelative:controllers\\tareascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|c:\\users\\jhon\\onedrive\\documentos\\pruebas empresas\\doublev\\doublevback\\doublevback\\modelos\\tarea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|solutionrelative:modelos\\tarea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|c:\\users\\jhon\\onedrive\\documentos\\pruebas empresas\\doublev\\doublevback\\doublevback\\interfaces\\itareaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|solutionrelative:interfaces\\itareaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|c:\\users\\jhon\\onedrive\\documentos\\pruebas empresas\\doublev\\doublevback\\doublevback\\controllers\\tareascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|solutionrelative:controllers\\tareascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|c:\\users\\jhon\\onedrive\\documentos\\pruebas empresas\\doublev\\doublevback\\doublevback\\dtos\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AA2E0E9-B9DA-4C4A-89F4-0FC93FF44E0C}|DoubleV.csproj|solutionrelative:dtos\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 755,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
@@ -36,7 +48,7 @@
               "RelativeDocumentMoniker": "Controllers\\TareasController.cs",
               "ToolTip": "C:\\Users\\jhon\\OneDrive\\Documentos\\Pruebas empresas\\DoubleV\\DoubleVBack\\DoubleVBack\\Controllers\\TareasController.cs",
               "RelativeToolTip": "Controllers\\TareasController.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAIwDMAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAADQAAAAAAAAAAAAEwGAAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-26T16:17:54.051Z",
               "IsPinned": true,
@@ -44,13 +56,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "ITareaService.cs",
               "DocumentMoniker": "C:\\Users\\jhon\\OneDrive\\Documentos\\Pruebas empresas\\DoubleV\\DoubleVBack\\DoubleVBack\\Interfaces\\ITareaService.cs",
               "RelativeDocumentMoniker": "Interfaces\\ITareaService.cs",
               "ToolTip": "C:\\Users\\jhon\\OneDrive\\Documentos\\Pruebas empresas\\DoubleV\\DoubleVBack\\DoubleVBack\\Interfaces\\ITareaService.cs",
               "RelativeToolTip": "Interfaces\\ITareaService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-26T16:17:59.491Z",
               "IsPinned": true,
@@ -58,26 +70,65 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
+              "Title": "Tarea.cs",
+              "DocumentMoniker": "C:\\Users\\jhon\\OneDrive\\Documentos\\Pruebas empresas\\DoubleV\\DoubleVBack\\DoubleVBack\\Modelos\\Tarea.cs",
+              "RelativeDocumentMoniker": "Modelos\\Tarea.cs",
+              "ToolTip": "C:\\Users\\jhon\\OneDrive\\Documentos\\Pruebas empresas\\DoubleV\\DoubleVBack\\DoubleVBack\\Modelos\\Tarea.cs",
+              "RelativeToolTip": "Modelos\\Tarea.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T19:43:44.523Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ApiResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jhon\\OneDrive\\Documentos\\Pruebas empresas\\DoubleV\\DoubleVBack\\DoubleVBack\\DTOs\\ApiResponse.cs",
+              "RelativeDocumentMoniker": "DTOs\\ApiResponse.cs",
+              "ToolTip": "C:\\Users\\jhon\\OneDrive\\Documentos\\Pruebas empresas\\DoubleV\\DoubleVBack\\DoubleVBack\\DTOs\\ApiResponse.cs",
+              "RelativeToolTip": "DTOs\\ApiResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T19:43:28.001Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TareaConUsuarioDTO.cs",
+              "DocumentMoniker": "C:\\Users\\jhon\\OneDrive\\Documentos\\Pruebas empresas\\DoubleV\\DoubleVBack\\DoubleVBack\\DTOs\\TareaConUsuarioDTO.cs",
+              "RelativeDocumentMoniker": "DTOs\\TareaConUsuarioDTO.cs",
+              "ToolTip": "C:\\Users\\jhon\\OneDrive\\Documentos\\Pruebas empresas\\DoubleV\\DoubleVBack\\DoubleVBack\\DTOs\\TareaConUsuarioDTO.cs",
+              "RelativeToolTip": "DTOs\\TareaConUsuarioDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T17:08:35.95Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MappingTarea.cs",
               "DocumentMoniker": "C:\\Users\\jhon\\OneDrive\\Documentos\\Pruebas empresas\\DoubleV\\DoubleVBack\\DoubleVBack\\Mapping\\MappingTarea.cs",
               "RelativeDocumentMoniker": "Mapping\\MappingTarea.cs",
               "ToolTip": "C:\\Users\\jhon\\OneDrive\\Documentos\\Pruebas empresas\\DoubleV\\DoubleVBack\\DoubleVBack\\Mapping\\MappingTarea.cs",
               "RelativeToolTip": "Mapping\\MappingTarea.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-26T16:22:37.622Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "TareaService.cs",
               "DocumentMoniker": "C:\\Users\\jhon\\OneDrive\\Documentos\\Pruebas empresas\\DoubleV\\DoubleVBack\\DoubleVBack\\Servicios\\TareaService.cs",
               "RelativeDocumentMoniker": "Servicios\\TareaService.cs",
               "ToolTip": "C:\\Users\\jhon\\OneDrive\\Documentos\\Pruebas empresas\\DoubleV\\DoubleVBack\\DoubleVBack\\Servicios\\TareaService.cs",
               "RelativeToolTip": "Servicios\\TareaService.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAIwDEAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAACgAAAAAAAAAAAAcwCoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-26T16:21:22.935Z",
               "EditorCaption": ""

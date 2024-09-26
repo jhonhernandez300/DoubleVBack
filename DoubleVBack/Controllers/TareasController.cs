@@ -24,6 +24,49 @@ namespace DoubleV.Controllers
             _mapper = mapper;
         }
 
+        [HttpPut("ActualizarTarea/{id}")]
+        public async Task<ActionResult<ApiResponse>> ActualizarTarea(int id, [FromBody] TareaConUsuarioDTO tareaConUsuarioDTO)
+        {
+            if (id <= 0)
+            {
+                return BadRequest(new ApiResponse { Message = "El ID de la tarea es requerido.", Data = null });
+            }
+
+            if (tareaConUsuarioDTO == null)
+            {
+                return BadRequest(new ApiResponse { Message = "Los datos de la tarea son requeridos.", Data = null });
+            }
+
+            try
+            {
+                var tareaExistente = await _tareaService.ObtenerTareaPorIdAsync(id);
+                if (tareaExistente == null)
+                {
+                    return NotFound(new ApiResponse { Message = "Tarea no encontrada.", Data = null });
+                }
+
+                // Mapeo de los datos actualizados al modelo existente
+                _mapper.Map(tareaConUsuarioDTO, tareaExistente);
+
+                var resultado = await _tareaService.ActualizarTareaAsync(tareaExistente);
+
+                if (resultado)
+                {
+                    return Ok(new ApiResponse
+                    {
+                        Message = "Tarea actualizada exitosamente.",
+                        Data = null
+                    });
+                }
+
+                return BadRequest(new ApiResponse { Message = "Error al actualizar la tarea.", Data = null });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ApiResponse { Message = "Error al actualizar la tarea.", Error = ex.Message });
+            }
+        }
+
         [HttpDelete("BorrarTarea/{id}")]
         public async Task<ActionResult<ApiResponse>> BorrarTarea(int id)
         {
@@ -109,7 +152,7 @@ namespace DoubleV.Controllers
             }
             try
             {
-                var tareaEncontrada = await _tareaService.GetTareaByIdAsync(id);
+                var tareaEncontrada = await _tareaService.ObtenerTareaPorIdAsync(id);
                 if (tareaEncontrada == null)
                 {
                     return NotFound(new ApiResponse { Message = $"Tarea con el id {id} no fue encontrada.", Data = null });
@@ -120,15 +163,7 @@ namespace DoubleV.Controllers
             {
                 return StatusCode(500, new ApiResponse { Message = "Error al buscar tarea por id.", Error = ex.Message });
             }
-        }                   
-
-        [HttpPut("{id}")]
-        public async Task<ActionResult<Tarea>> UpdateTarea(int id, Tarea tarea)
-        {
-            if (id != tarea.TareaId) return BadRequest();
-            await _tareaService.UpdateTareaAsync(tarea);
-            return NoContent();
-        }
+        }                           
         
     }
 }

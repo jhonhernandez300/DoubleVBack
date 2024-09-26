@@ -17,6 +17,50 @@ namespace DoubleV.Servicios
             _context = context;
         }
 
+        public async Task<bool> ActualizarTareaAsync(Tarea tarea)
+        {
+            try
+            {
+                _context.Tareas.Update(tarea);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                Console.WriteLine("Error de base de datos: " + dbEx.Message);
+                if (dbEx.InnerException != null)
+                {
+                    Console.WriteLine("Detalle: " + dbEx.InnerException.Message);
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error general: " + ex.Message);
+                return false;
+            }
+        }
+
+        public async Task<Tarea?> ObtenerTareaPorIdAsync(int tareaId)
+        {
+            try
+            {
+                return await _context.Tareas.FirstOrDefaultAsync(t => t.TareaId == tareaId);
+            }
+            catch (Exception ex)
+            {                
+                Console.WriteLine($"Error al obtener la tarea con ID {tareaId}: {ex.Message}");
+
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"Detalle: {ex.InnerException.Message}");
+                }
+
+                // nuevo: Devolver null en caso de error
+                return null;
+            }
+        }
+
         public async Task<bool> BorrarTareaAsync(int tareaId)
         {
             try
@@ -115,13 +159,7 @@ namespace DoubleV.Servicios
         public async Task<List<Tarea>> GetAllTareasAsync()
         {
             return await _context.Tareas.Include(t => t.Usuario).ToListAsync();
-        }
-
-        public async Task<Tarea> GetTareaByIdAsync(int id)
-        {
-            return await _context.Tareas.Include(t => t.Usuario)
-                .FirstOrDefaultAsync(t => t.TareaId == id);
-        }   
+        }       
 
         public async Task<Tarea> UpdateTareaAsync(Tarea tarea)
         {

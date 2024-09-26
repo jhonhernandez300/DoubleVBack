@@ -21,8 +21,8 @@
   },
   {
     "ContainingType": "DoubleV.Controllers.TareasController",
-    "Method": "UpdateTarea",
-    "RelativePath": "api/Tareas/{id}",
+    "Method": "ActualizarTarea",
+    "RelativePath": "api/Tareas/ActualizarTarea/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -33,14 +33,14 @@
         "IsRequired": true
       },
       {
-        "Name": "tarea",
-        "Type": "DoubleV.Modelos.Tarea",
+        "Name": "tareaConUsuarioDTO",
+        "Type": "DoubleV.DTOs.TareaConUsuarioDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "DoubleV.Modelos.Tarea",
+        "Type": "DoubleV.DTOs.ApiResponse",
         "MediaTypes": [
           "text/plain",
           "application/json",
