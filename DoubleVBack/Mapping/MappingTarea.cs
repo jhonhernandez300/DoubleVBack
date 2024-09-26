@@ -17,10 +17,7 @@ namespace DoubleV.Mapping
             CreateMap<TareaActualizarDTO, Tarea>()
             .ForMember(dest => dest.TareaId, opt => opt.Ignore()) // Ignorar TareaId para no cambiar el ID
             .ForMember(dest => dest.Usuario, opt => opt.Ignore());
-
-            CreateMap<Tarea, TareaConUsuarioDTO>()
-            .ForMember(dest => dest.UsuarioNombre, opt => opt.MapFrom(src => src.Usuario.Nombre)) 
-            .ForMember(dest => dest.UsuarioId, opt => opt.MapFrom(src => src.UsuarioId));
+          
         }        
     }
 }

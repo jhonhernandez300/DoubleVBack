@@ -45,8 +45,10 @@ namespace DoubleV.Controllers
                     return NotFound(new ApiResponse { Message = "Tarea no encontrada.", Data = null });
                 }
 
-                // Mapeo de los datos actualizados al modelo existente
-                _mapper.Map(tareaConUsuarioDTO, tareaExistente);
+                tareaExistente.Descripcion = tareaConUsuarioDTO.Descripcion;
+                tareaExistente.Estado = tareaConUsuarioDTO.Estado;
+                tareaExistente.UsuarioId = tareaConUsuarioDTO.UsuarioId;
+                tareaExistente.TareaId = tareaConUsuarioDTO.TareaId;
 
                 var resultado = await _tareaService.ActualizarTareaAsync(tareaExistente);
 
