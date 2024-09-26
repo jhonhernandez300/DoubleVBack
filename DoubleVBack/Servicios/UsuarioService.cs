@@ -17,13 +17,47 @@ namespace DoubleV.Servicios
             _context = context;
         }
 
-        public async Task<int> CrearUsuarioAsync(Usuario usuario) 
+        public async Task<bool> BorrarUsuarioAsync(int usuarioId)
         {
             try
             {
-                _context.Usuarios.Add(usuario); 
-                await _context.SaveChangesAsync(); 
-                return usuario.UsuarioId; 
+                var usuario = await _context.Usuarios.Include(u => u.Tareas)
+                                                     .FirstOrDefaultAsync(u => u.UsuarioId == usuarioId);
+
+                if (usuario == null)
+                {
+                    // Usuario no encontrado
+                    return false; 
+                }
+
+                // Al eliminar el usuario, también se eliminan sus tareas debido a la cascada configurada en OnModelCreating
+                _context.Usuarios.Remove(usuario); 
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                Console.WriteLine("Error de base de datos: " + dbEx.Message);
+                if (dbEx.InnerException != null)
+                {
+                    Console.WriteLine("Detalle: " + dbEx.InnerException.Message);
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error general: " + ex.Message);
+                return false;
+            }
+        }
+
+        public async Task<int> CrearUsuarioAsync(Usuario usuario)
+        {
+            try
+            {
+                _context.Usuarios.Add(usuario);
+                await _context.SaveChangesAsync();
+                return usuario.UsuarioId;
             }
             catch (DbUpdateException dbEx)
             {
@@ -33,12 +67,12 @@ namespace DoubleV.Servicios
                     Console.WriteLine("Detalle: " + dbEx.InnerException.Message);
                 }
                 // Devuelve -1 en caso de error
-                return -1; 
+                return -1;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error general: " + ex.Message);
-                return -1; 
+                return -1;
             }
         }
 
@@ -59,14 +93,14 @@ namespace DoubleV.Servicios
             }
         }
 
-        public async Task<List<UsuarioConRol>> ObtenerTodosLosUsuariosAsync()
+        public async Task<List<UsuarioConRolDTO>> ObtenerTodosLosUsuariosAsync()
         {
             try
             {
                 // Obtener los usuarios con su rol y mapear a UsuarioConRol
                 var usuarios = await _context.Usuarios
                     .Include(u => u.Rol) // Incluir la relación con Rol
-                    .Select(u => new UsuarioConRol
+                    .Select(u => new UsuarioConRolDTO
                     {
                         UsuarioId = u.UsuarioId,
                         Nombre = u.Nombre,
@@ -86,12 +120,12 @@ namespace DoubleV.Servicios
                 {
                     Console.WriteLine("Detalle: " + dbEx.InnerException.Message);
                 }
-                return new List<UsuarioConRol>(); 
+                return new List<UsuarioConRolDTO>();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error general: " + ex.Message);
-                return new List<UsuarioConRol>(); 
+                return new List<UsuarioConRolDTO>();
             }
         }
 
@@ -99,7 +133,7 @@ namespace DoubleV.Servicios
         {
             return await _context.Usuarios.Include(u => u.Rol).Include(u => u.Tareas)
                 .FirstOrDefaultAsync(u => u.UsuarioId == id);
-        }        
+        }
 
         public async Task<Usuario> UpdateUsuarioAsync(Usuario usuario)
         {
@@ -108,14 +142,5 @@ namespace DoubleV.Servicios
             return usuario;
         }
 
-        public async Task<bool> DeleteUsuarioAsync(int id)
-        {
-            var usuario = await _context.Usuarios.FindAsync(id);
-            if (usuario == null) return false;
-
-            _context.Usuarios.Remove(usuario);
-            await _context.SaveChangesAsync();
-            return true;
-        }
     }
 }

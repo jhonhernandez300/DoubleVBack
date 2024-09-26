@@ -21,6 +21,33 @@ namespace DoubleV.Controllers
             _mapper = mapper;
         }
 
+        [HttpDelete("BorrarUsuario/{id}")]
+        public async Task<ActionResult<ApiResponse>> BorrarUsuario(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest(new ApiResponse { Message = "Los datos del usuario son requeridos.", Data = null });
+            }
+            try
+            {
+                var resultado = await _usuarioService.BorrarUsuarioAsync(id);
+
+                if (resultado)
+                {
+                    return Ok(new ApiResponse
+                    {
+                        Message = "Usuario y sus tareas asociadas eliminados exitosamente.",
+                        Data = null
+                    });
+                }
+                return NotFound(new ApiResponse { Message = "Usuario no encontrado.", Data = null });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ApiResponse { Message = "Error al borrar el usuario.", Error = ex.Message });
+            }
+        }
+
         [HttpPost("CrearUsuario")] 
         public async Task<ActionResult<ApiResponse>> CrearUsuario([FromBody] UsuarioSinIdDTO usuarioSinIdDto) 
         {
@@ -104,7 +131,7 @@ namespace DoubleV.Controllers
 
                 if (usuarios == null || !usuarios.Any())
                 {
-                    return Ok(new UsuariosConRolResponse { Message = "No se encontraron usuarios", Usuarios = new List<UsuarioConRol>() });
+                    return Ok(new UsuariosConRolResponse { Message = "No se encontraron usuarios", Usuarios = new List<UsuarioConRolDTO>() });
                 }
 
                 return Ok(new UsuariosConRolResponse { Usuarios = usuarios });
@@ -114,37 +141,8 @@ namespace DoubleV.Controllers
                 Console.WriteLine("Error en GetUsuarios: " + ex.Message);
                 return StatusCode(500, new UsuariosConRolResponse { Message = "Error interno del servidor" });
             }
-        }
+        }   
 
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<Usuario>> GetUsuario(int id)
-        //{
-        //    var usuario = await _usuarioService.GetUsuarioByIdAsync(id);
-        //    if (usuario == null) return NotFound();
-        //    return usuario;
-        //}
-
-        //[HttpPost]
-        //public async Task<ActionResult<Usuario>> CreateUsuario(Usuario usuario)
-        //{
-        //    var createdUsuario = await _usuarioService.CreateUsuarioAsync(usuario);
-        //    return CreatedAtAction(nameof(GetUsuario), new { id = createdUsuario.UsuarioId }, createdUsuario);
-        //}
-
-        //[HttpPut("{id}")]
-        //public async Task<ActionResult<Usuario>> UpdateUsuario(int id, Usuario usuario)
-        //{
-        //    if (id != usuario.UsuarioId) return BadRequest();
-        //    await _usuarioService.UpdateUsuarioAsync(usuario);
-        //    return NoContent();
-        //}
-
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteUsuario(int id)
-        {
-            var result = await _usuarioService.DeleteUsuarioAsync(id);
-            if (!result) return NotFound();
-            return NoContent();
-        }
+       
     }
 }

@@ -140,8 +140,8 @@
   },
   {
     "ContainingType": "DoubleV.Controllers.UsuariosController",
-    "Method": "DeleteUsuario",
-    "RelativePath": "api/Usuarios/{id}",
+    "Method": "BorrarUsuario",
+    "RelativePath": "api/Usuarios/BorrarUsuario/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -152,7 +152,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "DoubleV.DTOs.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "DoubleV.Controllers.UsuariosController",

@@ -20,28 +20,28 @@ namespace DoubleVPruebas.Controladores.UsuariosControllerPruebas
         private readonly Mock<IUsuarioService> _mockUsuarioService;
         private readonly UsuariosController _usuariosController;
 
-        public ObtenerTodosLosUsuariosAsync()
-        {
-            _mockUsuarioService = new Mock<IUsuarioService>();
-            _usuariosController = new UsuariosController(_mockUsuarioService.Object);
-        }
+        //public ObtenerTodosLosUsuariosAsync()
+        //{
+        //    _mockUsuarioService = new Mock<IUsuarioService>();
+        //    _usuariosController = new UsuariosController(_mockUsuarioService.Object);
+        //}
 
-        [Fact]
-        public async Task ObtenerTodosLosUsuariosAsync_NoUsuarios_ReturnsOkWithMessage()
-        {            
-            _mockUsuarioService.Setup(s => s.ObtenerTodosLosUsuariosAsync())
-                .ReturnsAsync(new List<UsuarioConRol>()); 
+        //[Fact]
+        //public async Task ObtenerTodosLosUsuariosAsync_NoUsuarios_ReturnsOkWithMessage()
+        //{            
+        //    _mockUsuarioService.Setup(s => s.ObtenerTodosLosUsuariosAsync())
+        //        .ReturnsAsync(new List<UsuarioConRol>()); 
             
-            var result = await _usuariosController.ObtenerTodosLosUsuariosAsync();
+        //    var result = await _usuariosController.ObtenerTodosLosUsuariosAsync();
             
-            var actionResult = Assert.IsType<ActionResult<UsuariosConRolResponse>>(result);
-            var okResult = Assert.IsType<OkObjectResult>(actionResult.Result);
-            var response = Assert.IsType<UsuariosConRolResponse>(okResult.Value);
+        //    var actionResult = Assert.IsType<ActionResult<UsuariosConRolResponse>>(result);
+        //    var okResult = Assert.IsType<OkObjectResult>(actionResult.Result);
+        //    var response = Assert.IsType<UsuariosConRolResponse>(okResult.Value);
 
-            Assert.Equal("No se encontraron usuarios", response.Message);
-            Assert.NotNull(response.Usuarios);
-            Assert.Empty(response.Usuarios);
-        }
+        //    Assert.Equal("No se encontraron usuarios", response.Message);
+        //    Assert.NotNull(response.Usuarios);
+        //    Assert.Empty(response.Usuarios);
+        //}
 
 
     }

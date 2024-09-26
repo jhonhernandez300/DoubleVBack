@@ -38,27 +38,109 @@ namespace DoubleV
             modelBuilder.Entity<Tarea>()
                 .HasOne(df => df.Usuario)
                 .WithMany(f => f.Tareas)
-                .HasForeignKey(df => df.UsuarioId);
+                .HasForeignKey(df => df.UsuarioId)
+                .OnDelete(DeleteBehavior.Cascade); 
 
             //Seeds
             modelBuilder.Entity<Usuario>().HasData(
-                new Usuario
-                {                    
-                    UsuarioId = 1,
-                    Nombre = "James",
-                    Email = "james@gmail.com",
-                    Password = "James0101*",
-                    RolId = 1
-                },
-                new Usuario
-                {
-                    UsuarioId = 2,
-                    Nombre = "Radamel",
-                    Email = "radamel@gmail.com",
-                    Password = "Radamel0101*",
-                    RolId = 2
-                }
-            );
+                 new Usuario
+                 {
+                     UsuarioId = 1,
+                     Nombre = "James",
+                     Email = "james@gmail.com",
+                     Password = "James0101*",
+                     RolId = 1
+                 },
+                 new Usuario
+                 {
+                     UsuarioId = 2,
+                     Nombre = "Radamel",
+                     Email = "radamel@gmail.com",
+                     Password = "Radamel0101*",
+                     RolId = 2
+                 },
+                 // Nuevos Usuarios
+                 new Usuario
+                 {
+                     UsuarioId = 3,
+                     Nombre = "Carlos",
+                     Email = "carlos@gmail.com",
+                     Password = "Carlos0101*",
+                     RolId = 1
+                 },
+                 new Usuario
+                 {
+                     UsuarioId = 4,
+                     Nombre = "Maria",
+                     Email = "maria@gmail.com",
+                     Password = "Maria0101*",
+                     RolId = 2
+                 },
+                 new Usuario
+                 {
+                     UsuarioId = 5,
+                     Nombre = "Luis",
+                     Email = "luis@gmail.com",
+                     Password = "Luis0101*",
+                     RolId = 1
+                 },
+                 new Usuario
+                 {
+                     UsuarioId = 6,
+                     Nombre = "Laura",
+                     Email = "laura@gmail.com",
+                     Password = "Laura0101*",
+                     RolId = 2
+                 },
+                 new Usuario
+                 {
+                     UsuarioId = 7,
+                     Nombre = "Andres",
+                     Email = "andres@gmail.com",
+                     Password = "Andres0101*",
+                     RolId = 1
+                 },
+                 new Usuario
+                 {
+                     UsuarioId = 8,
+                     Nombre = "Daniela",
+                     Email = "daniela@gmail.com",
+                     Password = "Daniela0101*",
+                     RolId = 2
+                 },
+                 new Usuario
+                 {
+                     UsuarioId = 9,
+                     Nombre = "Juan",
+                     Email = "juan@gmail.com",
+                     Password = "Juan0101*",
+                     RolId = 1
+                 },
+                 new Usuario
+                 {
+                     UsuarioId = 10,
+                     Nombre = "Camila",
+                     Email = "camila@gmail.com",
+                     Password = "Camila0101*",
+                     RolId = 2
+                 },
+                 new Usuario
+                 {
+                     UsuarioId = 11,
+                     Nombre = "Miguel",
+                     Email = "miguel@gmail.com",
+                     Password = "Miguel0101*",
+                     RolId = 1
+                 },
+                 new Usuario
+                 {
+                     UsuarioId = 12,
+                     Nombre = "Sofia",
+                     Email = "sofia@gmail.com",
+                     Password = "Sofia0101*",
+                     RolId = 2
+                 }
+             );
 
             modelBuilder.Entity<Rol>().HasData(
                 new Rol

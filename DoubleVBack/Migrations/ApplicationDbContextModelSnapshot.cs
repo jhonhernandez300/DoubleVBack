@@ -143,6 +143,86 @@ namespace DoubleV.Migrations
                             Nombre = "Radamel",
                             Password = "Radamel0101*",
                             RolId = 2
+                        },
+                        new
+                        {
+                            UsuarioId = 3,
+                            Email = "carlos@gmail.com",
+                            Nombre = "Carlos",
+                            Password = "Carlos0101*",
+                            RolId = 1
+                        },
+                        new
+                        {
+                            UsuarioId = 4,
+                            Email = "maria@gmail.com",
+                            Nombre = "Maria",
+                            Password = "Maria0101*",
+                            RolId = 2
+                        },
+                        new
+                        {
+                            UsuarioId = 5,
+                            Email = "luis@gmail.com",
+                            Nombre = "Luis",
+                            Password = "Luis0101*",
+                            RolId = 1
+                        },
+                        new
+                        {
+                            UsuarioId = 6,
+                            Email = "laura@gmail.com",
+                            Nombre = "Laura",
+                            Password = "Laura0101*",
+                            RolId = 2
+                        },
+                        new
+                        {
+                            UsuarioId = 7,
+                            Email = "andres@gmail.com",
+                            Nombre = "Andres",
+                            Password = "Andres0101*",
+                            RolId = 1
+                        },
+                        new
+                        {
+                            UsuarioId = 8,
+                            Email = "daniela@gmail.com",
+                            Nombre = "Daniela",
+                            Password = "Daniela0101*",
+                            RolId = 2
+                        },
+                        new
+                        {
+                            UsuarioId = 9,
+                            Email = "juan@gmail.com",
+                            Nombre = "Juan",
+                            Password = "Juan0101*",
+                            RolId = 1
+                        },
+                        new
+                        {
+                            UsuarioId = 10,
+                            Email = "camila@gmail.com",
+                            Nombre = "Camila",
+                            Password = "Camila0101*",
+                            RolId = 2
+                        },
+                        new
+                        {
+                            UsuarioId = 11,
+                            Email = "miguel@gmail.com",
+                            Nombre = "Miguel",
+                            Password = "Miguel0101*",
+                            RolId = 1
+                        },
+                        new
+                        {
+                            UsuarioId = 12,
+                            Email = "sofia@gmail.com",
+                            Nombre = "Sofia",
+                            Password = "Sofia0101*",
+                            RolId = 2
                         });
                 });
 
