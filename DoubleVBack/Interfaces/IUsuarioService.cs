@@ -7,6 +7,7 @@ namespace DoubleV.Interfaces
 {
     public interface IUsuarioService
     {
+        Task<(string Message, bool IsValid)> ValidateEmployeeCredentialsAsync(Usuario usuario);
         Task<Usuario?> ObtenerUsuarioPorIdAsync(int id);
         Task<List<UsuarioConRolDTO>> ObtenerTodosLosUsuariosAsync();
         Task<Usuario> ObtenerUsuarioConRolYTareasUsandoElIdAsync(int id);        

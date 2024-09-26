@@ -3,14 +3,14 @@ using DoubleV.Interfaces;
 using DoubleV.Mapping;
 using DoubleV.Modelos;
 using DoubleV.Servicios;
-//using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-//using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
-//using DoubleV.Middlewares;
 using AutoMapper;
+using KontrolarCloud.Middlewares;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,28 +46,29 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "DoubleV", Version = "v1" });
 });
 
-//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-//    .AddJwtBearer(options => {
-//        IConfiguration configuration = builder.Configuration;
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        IConfiguration configuration = builder.Configuration;
 
-//        if (configuration != null)
-//        {
-//            options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-//            {
-//                ValidateIssuer = true,
-//                ValidateAudience = true,
-//                ValidateLifetime = true,
-//                ValidateIssuerSigningKey = true,
-//                ValidIssuer = configuration["Jwt:Issuer"],
-//                ValidAudience = configuration["Jwt:Audience"],
-//                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
-//            };
-//        }
-//        else
-//        {
-//            throw new InvalidOperationException("Configuration is null.");
-//        }
-//    });
+        if (configuration != null)
+        {
+            options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = configuration["Jwt:Issuer"],
+                ValidAudience = configuration["Jwt:Audience"],
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
+            };
+        }
+        else
+        {
+            throw new InvalidOperationException("Configuration is null.");
+        }
+    });
 
 builder.Services.AddHttpContextAccessor();
 

@@ -5,6 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace DoubleV.Controllers
 {
@@ -14,11 +20,77 @@ namespace DoubleV.Controllers
     {
         private readonly IUsuarioService _usuarioService;
         private readonly IMapper _mapper;
+        public IConfiguration _configuration;
 
-        public UsuariosController(IUsuarioService usuarioService, IMapper mapper)
+        public UsuariosController(IUsuarioService usuarioService, IMapper mapper, IConfiguration configuration)
         {
             _usuarioService = usuarioService;
             _mapper = mapper;
+            _configuration = configuration;
+        }
+
+        [HttpPost("Login")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login([FromBody] LoginDTO login)
+        {
+            try
+            {
+                if (login == null)
+                {
+                    return BadRequest(new { message = "El usuario no puede ser nulo." });
+                }
+
+                if (string.IsNullOrWhiteSpace(login.Correo) ||
+                    string.IsNullOrWhiteSpace(login.Password))
+                {
+                    return BadRequest(new { message = "El correo o el password no pueden ser nulos o estar vacíos." });
+                }
+
+                var usuario = _mapper.Map<Usuario>(login);
+                var (message, isValid) = await _usuarioService.ValidateEmployeeCredentialsAsync(usuario);
+                if (!isValid)
+                {
+                    return Unauthorized(new { Message = message, IsValid = isValid });
+                }
+
+                var token = GenerateJwtToken(login.Correo, login.Password);
+
+                return Ok(new
+                {
+                    token
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = $"Ocurrió un error interno en el servidor: {ex.Message}" });
+            }
+        }
+
+        private string GenerateJwtToken(string correo, string password)
+        {
+            var jwt = _configuration.GetSection("Jwt").Get<Jwt>();
+
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, jwt.Subject),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
+                new Claim("correo", correo),
+                new Claim("password", password)
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Key));
+            var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                jwt.Issuer,
+                jwt.Audience,
+                claims,
+                expires: DateTime.Now.AddMinutes(40),
+                signingCredentials: signingCredentials
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
         [HttpDelete("BorrarUsuario/{id}")]

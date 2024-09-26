@@ -17,6 +17,27 @@ namespace DoubleV.Servicios
             _context = context;
         }
 
+        public async Task<(string Message, bool IsValid)> ValidateEmployeeCredentialsAsync(Usuario usuario)
+        {
+            try
+            {
+                var user = await _context.Usuarios
+                    .FirstOrDefaultAsync(u => u.Email == usuario.Email && u.Password == usuario.Password);
+
+                if (user == null)
+                {
+                    return ("Credenciales inválidas.", false); 
+                }
+
+                return ("Credenciales válidas.", true); 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al validar credenciales: " + ex.Message);
+                return ("Ocurrió un error durante la validación.", false); 
+            }
+        }
+
         public async Task<bool> BorrarUsuarioAsync(int usuarioId)
         {
             try

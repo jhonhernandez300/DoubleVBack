@@ -12,7 +12,13 @@ namespace DoubleV.Mapping
              .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
              .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password))
              .ForMember(dest => dest.RolId, opt => opt.MapFrom(src => src.RolId))
-             .ReverseMap(); 
+             .ReverseMap();
+
+            CreateMap<LoginDTO, Usuario>()
+            .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Correo))
+            .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password))
+            .ForMember(dest => dest.Nombre, opt => opt.Ignore()) 
+            .ForMember(dest => dest.RolId, opt => opt.Ignore());
         }
     }
 }

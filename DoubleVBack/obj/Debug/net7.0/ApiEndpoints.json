@@ -202,6 +202,22 @@
   },
   {
     "ContainingType": "DoubleV.Controllers.UsuariosController",
+    "Method": "Login",
+    "RelativePath": "api/Usuarios/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "DoubleV.DTOs.LoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DoubleV.Controllers.UsuariosController",
     "Method": "ObtenerTodosLosUsuariosAsync",
     "RelativePath": "api/Usuarios/ObtenerTodosLosUsuariosAsync",
     "HttpMethod": "GET",

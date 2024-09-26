@@ -77,3 +77,4 @@ C:\Users\jhon\OneDrive\Documentos\Pruebas empresas\DoubleV\DoubleVBack\DoubleVBa
 C:\Users\jhon\OneDrive\Documentos\Pruebas empresas\DoubleV\DoubleVBack\DoubleVBack\obj\Debug\net7.0\DoubleV.pdb
 C:\Users\jhon\OneDrive\Documentos\Pruebas empresas\DoubleV\DoubleVBack\DoubleVBack\obj\Debug\net7.0\DoubleV.genruntimeconfig.cache
 C:\Users\jhon\OneDrive\Documentos\Pruebas empresas\DoubleV\DoubleVBack\DoubleVBack\obj\Debug\net7.0\ref\DoubleV.dll
+C:\Users\jhon\OneDrive\Documentos\Pruebas empresas\DoubleV\DoubleVBack\DoubleVBack\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
