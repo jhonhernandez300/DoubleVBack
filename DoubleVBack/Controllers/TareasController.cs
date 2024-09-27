@@ -6,10 +6,12 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 
 namespace DoubleV.Controllers
 {
     [ApiController]
+    [EnableCors("AllowOrigins")]
     [Route("api/[controller]")]
     public class TareasController : ControllerBase
     {

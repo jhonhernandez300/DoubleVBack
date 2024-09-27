@@ -2,6 +2,7 @@
 using DoubleV.Interfaces;
 using DoubleV.Modelos;
 using DoubleV.Servicios;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace DoubleV.Controllers
 {
     [ApiController]
+    [EnableCors("AllowOrigins")]
     [Route("api/[controller]")]
     public class RolesController : Controller
     {
