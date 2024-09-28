@@ -17,6 +17,30 @@ namespace DoubleV.Servicios
             _context = context;
         }
 
+        public async Task<bool> ActualizarUsuarioAsync(Usuario usuario)
+        {
+            try
+            {
+                _context.Usuarios.Update(usuario);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                Console.WriteLine("Error de base de datos: " + dbEx.Message);
+                if (dbEx.InnerException != null)
+                {
+                    Console.WriteLine("Detalle: " + dbEx.InnerException.Message);
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error general: " + ex.Message);
+                return false;
+            }
+        }
+
         public async Task<bool> BorrarUsuarioAsync(int usuarioId)
         {
             try
@@ -158,14 +182,7 @@ namespace DoubleV.Servicios
         {
             return await _context.Usuarios.Include(u => u.Rol).Include(u => u.Tareas)
                 .FirstOrDefaultAsync(u => u.UsuarioId == id);
-        }
-
-        public async Task<Usuario> UpdateUsuarioAsync(Usuario usuario)
-        {
-            _context.Entry(usuario).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return usuario;
-        }
+        }        
 
         public async Task<(string Message, bool IsValid)> ValidateEmployeeCredentialsAsync(Usuario usuario)
         {

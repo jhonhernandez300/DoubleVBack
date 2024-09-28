@@ -150,6 +150,37 @@
   },
   {
     "ContainingType": "DoubleV.Controllers.UsuariosController",
+    "Method": "ActualizarUsuario",
+    "RelativePath": "api/Usuarios/ActualizarUsuario/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "usuarioDTO",
+        "Type": "DoubleV.DTOs.UsuarioConRolDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "DoubleV.DTOs.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DoubleV.Controllers.UsuariosController",
     "Method": "BorrarUsuario",
     "RelativePath": "api/Usuarios/BorrarUsuario/{id}",
     "HttpMethod": "DELETE",

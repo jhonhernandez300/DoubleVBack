@@ -32,6 +32,54 @@ namespace DoubleV.Controllers
             _configuration = configuration;
         }
 
+        [HttpPut("ActualizarUsuario/{id}")]
+        [AuthorizeRoles("Administrador")]
+        public async Task<ActionResult<ApiResponse>> ActualizarUsuario(int id, [FromBody] UsuarioConRolDTO usuarioDTO)
+        {
+            if (id <= 0)
+            {
+                return BadRequest(new ApiResponse { Message = "El ID del usuario es requerido.", Data = null });
+            }
+
+            if (usuarioDTO == null)
+            {
+                return BadRequest(new ApiResponse { Message = "Los datos del usuario son requeridos.", Data = null });
+            }
+
+            try
+            {
+                var usuarioExistente = await _usuarioService.ObtenerUsuarioPorIdAsync(id);
+                if (usuarioExistente == null)
+                {
+                    return NotFound(new ApiResponse { Message = "Usuario no encontrado.", Data = null });
+                }
+
+                // cambio: mapeo manual de propiedades
+                usuarioExistente.UsuarioId = usuarioDTO.UsuarioId;
+                usuarioExistente.Nombre = usuarioDTO.Nombre;
+                usuarioExistente.Email = usuarioDTO.Email;
+                usuarioExistente.Password = usuarioDTO.Password;
+                usuarioExistente.RolId = usuarioDTO.RolId;
+
+                var resultado = await _usuarioService.ActualizarUsuarioAsync(usuarioExistente);
+
+                if (resultado)
+                {
+                    return Ok(new ApiResponse
+                    {
+                        Message = "Usuario actualizado exitosamente.",
+                        Data = null
+                    });
+                }
+
+                return BadRequest(new ApiResponse { Message = "Error al actualizar el usuario.", Data = null });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ApiResponse { Message = "Error al actualizar el usuario.", Error = ex.Message });
+            }
+        }
+
         [HttpPost("Login")]
         [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginDTO login)
