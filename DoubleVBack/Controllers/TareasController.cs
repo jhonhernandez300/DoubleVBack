@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Cors;
+using DoubleV.Helpers;
 
 namespace DoubleV.Controllers
 {
@@ -27,6 +28,7 @@ namespace DoubleV.Controllers
         }
 
         [HttpPut("ActualizarTarea/{id}")]
+        [AuthorizeRoles("Administrador", "Supervisor", "Empleado")]
         public async Task<ActionResult<ApiResponse>> ActualizarTarea(int id, [FromBody] TareaConUsuarioDTO tareaConUsuarioDTO)
         {
             if (id <= 0)
@@ -72,6 +74,7 @@ namespace DoubleV.Controllers
         }
 
         [HttpDelete("BorrarTarea/{id}")]
+        [AuthorizeRoles("Administrador")]
         public async Task<ActionResult<ApiResponse>> BorrarTarea(int id)
         {
             if (id <= 0)
@@ -99,6 +102,7 @@ namespace DoubleV.Controllers
         }
 
         [HttpGet("ObtenerTareasConUsuarios")]
+        [AuthorizeRoles("Administrador")]
         public async Task<ActionResult<ApiResponse>> ObtenerTareasConUsuarios()
         {
             try
@@ -123,6 +127,7 @@ namespace DoubleV.Controllers
         }
 
         [HttpPost("CrearTarea")]
+        [AuthorizeRoles("Administrador", "Supervisor")]
         public async Task<ActionResult<ApiResponse>> CrearTarea([FromBody] TareaSinIdDTO tarea)
         {
             if (tarea == null)
@@ -148,6 +153,7 @@ namespace DoubleV.Controllers
         }
 
         [HttpGet("ObtenerTareaPorId/{id}")]
+        [AuthorizeRoles("Administrador")]
         public async Task<ActionResult<Tarea>> ObtenerTareaPorId(int id)
         {
             if (id <= 0)

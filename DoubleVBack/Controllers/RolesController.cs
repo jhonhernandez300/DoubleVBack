@@ -1,4 +1,5 @@
 ﻿using DoubleV.DTOs;
+using DoubleV.Helpers;
 using DoubleV.Interfaces;
 using DoubleV.Modelos;
 using DoubleV.Servicios;
@@ -22,6 +23,7 @@ namespace DoubleV.Controllers
         }
 
         [HttpGet("ObtenerTodosLosRolesAsync")]
+        [AuthorizeRoles("Administrador")]
         public async Task<ActionResult<RolesResponse>> ObtenerTodosLosRolesAsync()
         {
             try

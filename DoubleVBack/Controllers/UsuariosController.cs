@@ -104,6 +104,7 @@ namespace DoubleV.Controllers
         }
 
         [HttpDelete("BorrarUsuario/{id}")]
+        [AuthorizeRoles("Administrador")]
         public async Task<ActionResult<ApiResponse>> BorrarUsuario(int id)
         {
             if (id <= 0)
@@ -164,6 +165,7 @@ namespace DoubleV.Controllers
         }
 
         [HttpGet("ObtenerUsuarioPorIdAsync/{id}")]
+        [AuthorizeRoles("Administrador")]
         public async Task<ActionResult<UsuarioResponse>> ObtenerUsuarioPorIdAsync(int id)
         {
             try
@@ -206,6 +208,7 @@ namespace DoubleV.Controllers
         }
 
         [HttpGet("ObtenerTodosLosUsuariosAsync")]
+        [AuthorizeRoles("Administrador")]
         public async Task<ActionResult<UsuariosConRolResponse>> ObtenerTodosLosUsuariosAsync()
         {
             try
