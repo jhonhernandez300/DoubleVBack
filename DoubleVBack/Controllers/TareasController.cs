@@ -102,7 +102,7 @@ namespace DoubleV.Controllers
         }
 
         [HttpGet("ObtenerTareasConUsuarios")]
-        [AuthorizeRoles("Administrador")]
+        [AuthorizeRoles("Administrador", "Supervisor", "Empleado")]
         public async Task<ActionResult<ApiResponse>> ObtenerTareasConUsuarios()
         {
             try
@@ -127,7 +127,7 @@ namespace DoubleV.Controllers
         }
 
         [HttpPost("CrearTarea")]
-        [AuthorizeRoles("Administrador", "Supervisor")]
+        [AuthorizeRoles("Administrador")]
         public async Task<ActionResult<ApiResponse>> CrearTarea([FromBody] TareaSinIdDTO tarea)
         {
             if (tarea == null)

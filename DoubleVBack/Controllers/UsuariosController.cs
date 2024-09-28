@@ -101,7 +101,7 @@ namespace DoubleV.Controllers
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
-        }
+        }       
 
         [HttpDelete("BorrarUsuario/{id}")]
         [AuthorizeRoles("Administrador")]

@@ -57,7 +57,7 @@ namespace DoubleV
                      Nombre = "Radamel",
                      Email = "radamel@gmail.com",
                      Password = "Radamel0101*",
-                     RolId = 2
+                     RolId = 3
                  },
                  // Nuevos Usuarios
                  new Usuario
@@ -90,7 +90,7 @@ namespace DoubleV
                      Nombre = "Laura",
                      Email = "laura@gmail.com",
                      Password = "Laura0101*",
-                     RolId = 2
+                     RolId = 3
                  },
                  new Usuario
                  {

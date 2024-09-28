@@ -56,13 +56,7 @@ namespace KontrolarCloud.Middlewares
                                 await context.Response.WriteAsync("Access Denied: Insufficient Role");
                                 return;
                             }
-                        }
-                        //var role = GetRoleFromToken.Get(token);
-                        //if (role != "Administrador") 
-                        //{
-                        //    context.Response.StatusCode = 403;
-                        //    return;
-                        //}
+                        }                    
                     }
                     else
                     {
