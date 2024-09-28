@@ -12,6 +12,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Cors;
+using DoubleV.Helpers;
 
 namespace DoubleV.Controllers
 {
@@ -22,7 +23,7 @@ namespace DoubleV.Controllers
     {
         private readonly IUsuarioService _usuarioService;
         private readonly IMapper _mapper;
-        public IConfiguration _configuration;
+        public IConfiguration _configuration;        
 
         public UsuariosController(IUsuarioService usuarioService, IMapper mapper, IConfiguration configuration)
         {
@@ -55,7 +56,13 @@ namespace DoubleV.Controllers
                     return Unauthorized(new { Message = message, IsValid = isValid });
                 }
 
-                var token = GenerateJwtToken(login.Correo, login.Password);
+                var roleName = await _usuarioService.GetRoleByEmailAsync(login.Correo);
+                if (roleName == null)
+                {
+                    return NotFound(new { message = "No se encontró un rol para este usuario." });
+                }
+
+                var token = GenerateJwtToken(login, roleName);
 
                 return Ok(new
                 {
@@ -68,7 +75,7 @@ namespace DoubleV.Controllers
             }
         }
 
-        private string GenerateJwtToken(string correo, string password)
+        private string GenerateJwtToken(LoginDTO login, string nombreRol)
         {
             var jwt = _configuration.GetSection("Jwt").Get<Jwt>();
 
@@ -77,8 +84,9 @@ namespace DoubleV.Controllers
                 new Claim(JwtRegisteredClaimNames.Sub, jwt.Subject),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                new Claim("correo", correo),
-                new Claim("password", password)
+                new Claim("correo", login.Correo),
+                new Claim("password", login.Password),
+                new Claim(ClaimTypes.Role, nombreRol)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Key));
@@ -122,9 +130,10 @@ namespace DoubleV.Controllers
             }
         }
 
-        [HttpPost("CrearUsuario")] 
+        [HttpPost("CrearUsuario")]
+        [AuthorizeRoles("Administrador", "Supervisor")]
         public async Task<ActionResult<ApiResponse>> CrearUsuario([FromBody] UsuarioSinIdDTO usuarioSinIdDto) 
-        {
+        {            
             if (usuarioSinIdDto == null) 
             {
                 return BadRequest(new ApiResponse { Message = "Los datos del usuario son requeridos.", Data = null }); 

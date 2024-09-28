@@ -1,4 +1,6 @@
 ﻿using Azure.Core;
+using DoubleV.Helpers;
+
 //using EF.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
@@ -40,6 +42,27 @@ namespace KontrolarCloud.Middlewares
                             await context.Response.WriteAsync("Invalid Token");
                             return;
                         }
+
+                        var userRole = GetRoleFromToken.Get(token);
+
+                        var authorizedRolesAttribute = endpoint.Metadata.GetMetadata<AuthorizeRolesAttribute>();
+                        if (authorizedRolesAttribute != null)
+                        {
+                            var rolesAllowed = authorizedRolesAttribute.Roles;
+
+                            if (!rolesAllowed.Contains(userRole))
+                            {
+                                context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                                await context.Response.WriteAsync("Access Denied: Insufficient Role");
+                                return;
+                            }
+                        }
+                        //var role = GetRoleFromToken.Get(token);
+                        //if (role != "Administrador") 
+                        //{
+                        //    context.Response.StatusCode = 403;
+                        //    return;
+                        //}
                     }
                     else
                     {
