@@ -1,9 +1,12 @@
-Se una .net 7.0
+Se usa .net 7.0
 
 La aplicación tiene instalados estos paquetes:
-AutoMapper 12.0.1
-AutoMapper.Extensions.Microsoft.DependencyInjection 12.0.0
-Microsoft.AspNetCore.Authentication.JwtBearer 7.0.14
+AutoMapper 12.0.1  
+
+AutoMapper.Extensions.Microsoft.DependencyInjection 12.0.0  
+
+Microsoft.AspNetCore.Authentication.JwtBearer 7.0.14  
+
 Microsoft.AspNetCore.OpenApi 7.0.11
 Microsoft.EntityFrameworkCore7.0.0
 Microsoft.EntityFrameworkCore.Design 7.0.0
